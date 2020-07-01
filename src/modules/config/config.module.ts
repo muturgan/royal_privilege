@@ -3,13 +3,10 @@ import Joi from '@hapi/joi';
 import path from 'path';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
-const modeConfigPostfix = NODE_ENV === 'production'
-   ? ''
-   : `.${NODE_ENV}`;
+const modeConfigPrefix = `.${NODE_ENV}`;
 
 export const configModule = ConfigModule.forRoot({
-   isGlobal: true,
-   envFilePath: path.join(process.cwd(), 'env', `.env${modeConfigPostfix}`),
+   envFilePath: [path.join(process.cwd(), 'env', `${modeConfigPrefix}.env`), '.env'],
    validationSchema: Joi.object({
       NODE_ENV: Joi.string()
          .valid('development', 'production', 'test')
