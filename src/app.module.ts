@@ -1,8 +1,8 @@
 import { Module, OnApplicationShutdown } from '@nestjs/common';
-import { configModule } from './config/config.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TodoModule } from './todo/todo.module';
 import { ConfigService } from '@nestjs/config';
+import { configModule } from './modules/config/config.module';
+import { TodoModule } from './modules/todo/todo.module';
 
 @Module({
    imports: [
